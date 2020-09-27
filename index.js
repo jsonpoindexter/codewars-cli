@@ -78,12 +78,18 @@ const getCompletedChallenges = async(page = 0, previousData = []) => {
     return results
 }
 
+
 const mapToMarkdown = (solutionCodeMap) => {
     let markdown = ""
     solutionCodeMap.forEach((challenge, id) => {
-        markdown += `# ${challenge.name}\n`
+        // Solution Title
+        // TODO: add coloring to different ranks
+        markdown += `## [${challenge.name}](${challenge.url}) - ${challenge.rank.name}\n`
+        // Solution CodeBlock
+        markdown += `\`\`\`${challenge.solutions[0].language.toLowerCase()}\n${challenge.solutions[0].code}\n\`\`\``
+        markdown += '\n\n'
     })
-    return markdown
+    return markdown.replace("  ")
 }
 
 // Main
