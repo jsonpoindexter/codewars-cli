@@ -1,11 +1,13 @@
 # codewars-cli
 
+Codewars CLI parses a user's codewars solutions and outputs them in a github README.md format
+
 ```bash
 Options:
       --help      Show help                                            [boolean]
       --version   Show version number                                  [boolean]
   -u, --username  Username or ID of the codewars user        [string] [required]
-  -t, --token     'remember_user_token' value from codewars cookie
+  -t, --token     'remember_user_token' value from a codewars user's cookie
 
 ```
 
