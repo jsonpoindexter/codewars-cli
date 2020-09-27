@@ -2,6 +2,7 @@
 const axios = require('axios');
 const jsdom = require("jsdom");
 const JSDOM = jsdom.JSDOM
+const fs = require('fs').promises;
 
 const argv = require('yargs')
     .option('username', {
@@ -14,11 +15,18 @@ const argv = require('yargs')
         type: 'string',
         description: '\'remember_user_token\' value from codewars cookie',
     })
+    .option('filename', {
+        alias: 'f',
+        type: 'string',
+        default: 'README.md',
+        description: 'Filename to output codewars solutions as markdown',
+    })
     .demandOption(['u', 't'])
     .argv
-const BASE_URL = "https://www.codewars.com";
-const USERNAME = argv.username;
-const TOKEN = argv.token;
+const BASE_URL = "https://www.codewars.com"
+const USERNAME = argv.username
+const TOKEN = argv.token
+const FILENAME = argv.filename
 
 // Parse solution code block from HTML page (code is not available via API) to Map
 // Returns:
@@ -70,6 +78,15 @@ const getCompletedChallenges = async(page = 0, previousData = []) => {
     return results
 }
 
+const mapToMarkdown = (solutionCodeMap) => {
+    let markdown = ""
+    solutionCodeMap.forEach((challenge, id) => {
+        markdown += `# ${challenge.name}\n`
+    })
+    return markdown
+}
+
+// Main
 (async () => {
     try {
         const solutionCodeMap = await getCompletedSolutions()
@@ -79,6 +96,8 @@ const getCompletedChallenges = async(page = 0, previousData = []) => {
             const codeChallenge = codeChallenges.find((challenge => challenge.id === key))
             if(codeChallenge) solutionCodeMap.set(key, {...value, ...codeChallenge})
         })
+        const output = mapToMarkdown(solutionCodeMap)
+        await fs.writeFile(FILENAME, output)
     } catch (err) {
         console.log(err)
     }
