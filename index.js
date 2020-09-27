@@ -3,6 +3,8 @@ const axios = require('axios');
 const jsdom = require("jsdom");
 const JSDOM = jsdom.JSDOM
 const fs = require('fs').promises;
+const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
 const argv = require('yargs')
     .option('username', {
@@ -81,12 +83,24 @@ const getCompletedChallenges = async(page = 0, previousData = []) => {
 
 const mapToMarkdown = (solutionCodeMap) => {
     let markdown = ""
-    solutionCodeMap.forEach((challenge, id) => {
+    solutionCodeMap.forEach((challenge) => {
+
         // Solution Title
         // TODO: add coloring to different ranks
-        markdown += `## [${challenge.name}](${challenge.url}) - ${challenge.rank.name}\n`
+        markdown += `# [${challenge.name}](${challenge.url}) - ${challenge.rank.name}\n`
+
+        // Complete At
+        const date = new Date(challenge.completedAt)
+        const dayName = dayNames[date.getDay()]
+        const monthName = monthNames[date.getMonth()]
+        markdown += `#### Completed: ${dayName}, ${monthName} ${date.getDate()}, ${date.getFullYear()}\n`
+
         // Solution CodeBlock
-        markdown += `\`\`\`${challenge.solutions[0].language.toLowerCase()}\n${challenge.solutions[0].code}\n\`\`\``
+        challenge.solutions.forEach(({code, language}) => {
+            markdown += `### ${language}\n`
+            markdown += `\`\`\`${language.toLowerCase()}\n${code}\n\`\`\``
+        })
+
         markdown += '\n\n'
     })
     return markdown.replace("  ")
@@ -95,13 +109,24 @@ const mapToMarkdown = (solutionCodeMap) => {
 // Main
 (async () => {
     try {
+        // Parse completed challenge solutions from HTML
         const solutionCodeMap = await getCompletedSolutions()
+
         // Get Code Challenge information for all completed code challenges https://dev.codewars.com/#get-code-challenge
        const codeChallenges = await Promise.all(Array.from(solutionCodeMap.keys()).map(id => axios.get(`${BASE_URL}/api/v1/code-challenges/${id}`).then(res => res.data)))
         solutionCodeMap.forEach((value, key) => {
             const codeChallenge = codeChallenges.find((challenge => challenge.id === key))
             if(codeChallenge) solutionCodeMap.set(key, {...value, ...codeChallenge})
         })
+
+        // Get information on user's challenges https://dev.codewars.com/#get-user:-completed-challenges
+        const completedChallenges = await getCompletedChallenges()
+        // Add completedAt for user's challenge
+        completedChallenges.forEach((challenge) => {
+            solutionCodeMap.set(challenge.id, {...solutionCodeMap.get(challenge.id), completedAt: challenge.completedAt})
+        })
+
+        // Output challenge solutions to markdown file
         const output = mapToMarkdown(solutionCodeMap)
         await fs.writeFile(FILENAME, output)
     } catch (err) {

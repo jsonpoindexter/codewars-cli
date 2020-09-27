@@ -1,4 +1,6 @@
-## [Stop gninnipS My sdroW!](https://www.codewars.com/kata/5264d2b162488dc400000001) - 6 kyu
+# [Stop gninnipS My sdroW!](https://www.codewars.com/kata/5264d2b162488dc400000001) - 6 kyu
+#### Completed: Saturday, September 26, 2020
+### Go
 ```go
 package kata
 import ("strings")
@@ -24,7 +26,9 @@ func reverseString(str string) string {
 }
 ```
 
-## [Moving Zeros To The End](https://www.codewars.com/kata/52597aa56021e91c93000cb0) - 5 kyu
+# [Moving Zeros To The End](https://www.codewars.com/kata/52597aa56021e91c93000cb0) - 5 kyu
+#### Completed: Thursday, September 24, 2020
+### JavaScript
 ```javascript
 var moveZeros = function (arr) {
   let zeros = []
@@ -37,7 +41,9 @@ var moveZeros = function (arr) {
 }
 ```
 
-## [Shortest Word](https://www.codewars.com/kata/57cebe1dc6fdc20c57000ac9) - 7 kyu
+# [Shortest Word](https://www.codewars.com/kata/57cebe1dc6fdc20c57000ac9) - 7 kyu
+#### Completed: Wednesday, September 23, 2020
+### TypeScript
 ```typescript
 export function findShort(s: string): number {
   let length = 0
@@ -49,7 +55,9 @@ export function findShort(s: string): number {
 }
 ```
 
-## [Persistent Bugger.](https://www.codewars.com/kata/55bf01e5a717a0d57e0000ec) - 6 kyu
+# [Persistent Bugger.](https://www.codewars.com/kata/55bf01e5a717a0d57e0000ec) - 6 kyu
+#### Completed: Wednesday, September 23, 2020
+### Swift
 ```swift
 func persistence(for num: Int, count: Int = 0) -&gt; Int {
   if num &lt; 10 { return count }
@@ -61,7 +69,9 @@ func persistence(for num: Int, count: Int = 0) -&gt; Int {
 }
 ```
 
-## [Good vs Evil](https://www.codewars.com/kata/52761ee4cffbc69732000738) - 6 kyu
+# [Good vs Evil](https://www.codewars.com/kata/52761ee4cffbc69732000738) - 6 kyu
+#### Completed: Wednesday, September 23, 2020
+### Swift
 ```swift
 let goodArr = [
   1, // Hobbits
@@ -97,14 +107,18 @@ func unitsToWorth(units: [Int], worth: [Int]) -&gt; Int {
 }
 ```
 
-## [Breaking chocolate problem](https://www.codewars.com/kata/534ea96ebb17181947000ada) - 7 kyu
+# [Breaking chocolate problem](https://www.codewars.com/kata/534ea96ebb17181947000ada) - 7 kyu
+#### Completed: Tuesday, September 22, 2020
+### JavaScript
 ```javascript
 function breakChocolate(n,m) {
   return Math.max(0, (n*m) - 1);
 }
 ```
 
-## [Disemvowel Trolls](https://www.codewars.com/kata/52fba66badcd10859f00097e) - 7 kyu
+# [Disemvowel Trolls](https://www.codewars.com/kata/52fba66badcd10859f00097e) - 7 kyu
+#### Completed: Tuesday, September 22, 2020
+### JavaScript
 ```javascript
 function disemvowel(str) {
  const vowels = ['a', 'e', 'i', 'o', 'u']
@@ -115,21 +129,27 @@ function disemvowel(str) {
 }
 ```
 
-## [Create Phone Number](https://www.codewars.com/kata/525f50e3b73515a6db000b83) - 6 kyu
+# [Create Phone Number](https://www.codewars.com/kata/525f50e3b73515a6db000b83) - 6 kyu
+#### Completed: Tuesday, September 22, 2020
+### JavaScript
 ```javascript
 function createPhoneNumber(numbers){
   return `(${numbers.slice(0,3).join('')}) ${numbers.slice(3,6).join('')}-${numbers.slice(6,10).join('')}`
 }
 ```
 
-## [String ends with?](https://www.codewars.com/kata/51f2d1cafc9c0f745c00037d) - 7 kyu
+# [String ends with?](https://www.codewars.com/kata/51f2d1cafc9c0f745c00037d) - 7 kyu
+#### Completed: Tuesday, September 22, 2020
+### JavaScript
 ```javascript
 function solution(str, ending){
   return ending === str.slice(str.length - ending.length, str.length)
 }
 ```
 
-## [Array.diff](https://www.codewars.com/kata/523f5d21c841566fde000009) - 6 kyu
+# [Array.diff](https://www.codewars.com/kata/523f5d21c841566fde000009) - 6 kyu
+#### Completed: Monday, September 21, 2020
+### JavaScript
 ```javascript
 function arrayDiff(arrayA, arrayB) {
   return arrayA.reduce((diff, currentItem) =&gt; {
@@ -139,7 +159,9 @@ function arrayDiff(arrayA, arrayB) {
 }
 ```
 
-## [Find the divisors! ](https://www.codewars.com/kata/544aed4c4a30184e960010f4) - 7 kyu
+# [Find the divisors! ](https://www.codewars.com/kata/544aed4c4a30184e960010f4) - 7 kyu
+#### Completed: Wednesday, June 3, 2020
+### Rust
 ```rust
 fn divisors(integer: u32) -&gt; Result&lt;Vec&lt;u32&gt;, String&gt; {
     let vec = (2..integer-1).filter(|x| integer % *x == 0).collect::&lt;Vec&lt;_&gt;&gt;();
@@ -150,7 +172,9 @@ fn divisors(integer: u32) -&gt; Result&lt;Vec&lt;u32&gt;, String&gt; {
 }
 ```
 
-## [Find the odd int](https://www.codewars.com/kata/54da5a58ea159efa38000836) - 6 kyu
+# [Find the odd int](https://www.codewars.com/kata/54da5a58ea159efa38000836) - 6 kyu
+#### Completed: Friday, June 7, 2019
+### JavaScript
 ```javascript
 function findOdd(numArray) {
     return numArray.find((num) =&gt; {
@@ -161,7 +185,9 @@ function findOdd(numArray) {
 }
 ```
 
-## [Multiply](https://www.codewars.com/kata/50654ddff44f800200000004) - 8 kyu
+# [Multiply](https://www.codewars.com/kata/50654ddff44f800200000004) - 8 kyu
+#### Completed: Friday, May 31, 2019
+### JavaScript
 ```javascript
 function multiply(a, b){
   return a * b
