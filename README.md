@@ -1,4 +1,5 @@
 # codewars-cli
+https://www.npmjs.com/package/@poindexter.json/codewars-cli
 
 Codewars CLI parses a user's codewars solutions and outputs them in a github README.md format
 
@@ -14,11 +15,11 @@ Options:
 
 ## Quick Overview
 ```bash
-npx codewars-cli --username 'codewars username or ID' --token='remember_user_token from codewars cookie'
+npx @poindexter.json/codewars-cli --username 'codewars username or ID' --token='remember_user_token from codewars cookie'
 ```
 example:
 ```bash
-npx codewars-cli --username 'jsonpoindxter' --token='BAhbCFsGSSIdN...'
+npx @poindexter.json/codewars-cli --username 'jsonpoindxter' --token='BAhbCFsGSSIdN...'
 ```
 
 ## Codewars Token
