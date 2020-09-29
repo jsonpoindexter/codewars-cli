@@ -4,10 +4,11 @@ Codewars CLI parses a user's codewars solutions and outputs them in a github REA
 
 ```bash
 Options:
-      --help      Show help                                            [boolean]
-      --version   Show version number                                  [boolean]
-  -u, --username  Username or ID of the codewars user        [string] [required]
-  -t, --token     'remember_user_token' value from a codewars user's cookie
+      --help      Show help                                             [boolean]
+      --version   Show version number                                   [boolean]
+  -u, --username  Username or ID of the codewars user                   [string] [required]
+  -t, --token     'remember_user_token' value from codewars cookie      [string] [required]
+  -f, --filename  Filename to output codewars solutions as markdown     [string] [default: "README.md"]
 
 ```
 
