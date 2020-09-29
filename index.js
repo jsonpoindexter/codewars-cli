@@ -59,7 +59,7 @@ const getCompletedSolutions = async () => {
         const language = languageEl.innerHTML.slice(0, languageEl.innerHTML.length - 1)
 
         // Parse solution code block
-        const code = solutionElement.getElementsByTagName('code')[0].innerHTML
+        const code = solutionElement.getElementsByTagName('code')[0].textContent
 
         // Update the solution array for the challenge if it was completed in more than one language
         const value = codeMap.get(id)
@@ -84,7 +84,6 @@ const getCompletedChallenges = async(page = 0, previousData = []) => {
 const mapToMarkdown = (solutionCodeMap) => {
     let markdown = ""
     solutionCodeMap.forEach((challenge) => {
-
         // Solution Title
         // TODO: add coloring to different ranks
         markdown += `# [${challenge.name}](${challenge.url}) - ${challenge.rank.name}\n`
@@ -103,7 +102,7 @@ const mapToMarkdown = (solutionCodeMap) => {
 
         markdown += '\n\n'
     })
-    return markdown.replace("  ")
+    return markdown
 }
 
 // Main
