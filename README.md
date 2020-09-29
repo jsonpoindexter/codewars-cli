@@ -20,3 +20,8 @@ example:
 ```bash
 npx codewars-cli --username 'jsonpoindxter' --token='BAhbCFsGSSIdN...'
 ```
+
+## Codewars Token
+The codewars 'remember_user_token' is required in order to fetch a user's solutions since [the codewars API or UI does not  currently allow this](https://github.com/Codewars/codewars.com/issues/235). The 'remember_user_token' is created after a succesful login to codewars and stored in the web browsers cookies.
+
+[How to view cookies](https://kb.iu.edu/d/ajfi)
