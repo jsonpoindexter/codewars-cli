@@ -1,7 +1,7 @@
 # codewars-cli
 https://www.npmjs.com/package/@poindexter.json/codewars-cli
 
-Codewars CLI parses a user's codewars solutions and outputs them in a github README.md format
+Codewars CLI parses a user's codewars solutions and outputs them in a github README.md format.
 
 ```bash
 Options:
@@ -12,6 +12,8 @@ Options:
   -f, --filename  Filename to output codewars solutions as markdown     [string] [default: "README.md"]
 
 ```
+
+[Example output](https://github.com/jsonpoindexter/codewars-cli/blob/master/EXAMPLE.md)
 
 ## Quick Overview
 ```bash
