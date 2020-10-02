@@ -1,6 +1,6 @@
 {
   "name": "@poindexter.json/codewars-cli",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Codewars CLI parses a user's codewars solutions and outputs them in a github README.md format",
   "main": "index.js",
   "bin": "index.js",
@@ -27,6 +27,5 @@
   "bugs": {
     "url": "https://github.com/jsonpoindexter/codewars-cli/issues"
   },
-  "homepage": "https://github.com/jsonpoindexter/codewars-cli#readme",
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" }
+  "homepage": "https://github.com/jsonpoindexter/codewars-cli#readme"
 }

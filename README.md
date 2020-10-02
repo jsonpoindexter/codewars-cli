@@ -13,15 +13,15 @@ Options:
 
 ```
 
-[Example output](https://github.com/jsonpoindexter/codewars-cli/blob/master/EXAMPLE.md)
+[Example output](https://github.com/jsonpoindexter/codewars-solutions/blob/master/README.md)
 
 ## Quick Overview
 ```bash
-npx @poindexter.json/codewars-cli --username 'codewars username or ID' --token='remember_user_token from codewars cookie'
+npx @poindexter.json/codewars-cli --username=*codewars username or ID* --token=*remember_user_token from codewars cookie*
 ```
 example:
 ```bash
-npx @poindexter.json/codewars-cli --username 'jsonpoindxter' --token='BAhbCFsGSSIdN...'
+npx @poindexter.json/codewars-cli --username=jsonpoindxter --token=BAhbCFsGSSIdN...
 ```
 
 ## Codewars Token
