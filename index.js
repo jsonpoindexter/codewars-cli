@@ -42,42 +42,47 @@ const FILENAME = argv.filename
 //         solutionsId: {
 //             ...
 //     }
-const getCompletedSolutions = async () => {
-    const { data } = await axios.get(`${BASE_URL}/users/${USERNAME}/completed_solutions`, {headers: {cookie: `remember_user_token=${TOKEN}`}})
+const getCompletedSolutions = async (page = 0, codeMap = new Map()) => {
+    const { data } = await axios.get(`${BASE_URL}/users/${USERNAME}/completed_solutions${!!page ? `?page=${page}` : ''}`, {headers: {cookie: `remember_user_token=${TOKEN}`}})
     const dom = new JSDOM(data)
     const solutionElements = dom.window.document.getElementsByClassName('solutions')
     // Create a map of solution ID to code block and language
 
-    const codeMap = new Map()
-    Array.prototype.map.call(solutionElements, solutionElement => {
-        // Parse challenge ID
-        const titleEl = solutionElement.getElementsByTagName('a')[0]
-        const id = titleEl.href.replace('/kata/', '') // solution id
+    if (solutionElements.length) {
+        Array.prototype.map.call(solutionElements, solutionElement => {
+            // Parse challenge ID
+            const titleEl = solutionElement.getElementsByTagName('a')[0]
+            const id = titleEl.href.replace('/kata/', '') // solution id
 
-        // Parse solution language
-        const languageEl = solutionElement.getElementsByTagName('h6')[0]
-        const language = languageEl.innerHTML.slice(0, languageEl.innerHTML.length - 1)
+            // Parse solution language
+            const languageEl = solutionElement.getElementsByTagName('h6')[0]
+            const language = languageEl.innerHTML.slice(0, languageEl.innerHTML.length - 1)
 
-        // Parse solution code block
-        const code = solutionElement.getElementsByTagName('code')[0].textContent
+            // Parse solution code block
+            const code = solutionElement.getElementsByTagName('code')[0].textContent
 
-        // Update the solution array for the challenge if it was completed in more than one language
-        const value = codeMap.get(id)
-        value ?
-            codeMap.set(id, { solutions: value.solutions.push({code, language})}) :
-            codeMap.set(id, { solutions: [{ code, language }]})
-    })
-    return codeMap
+            // Update the solution array for the challenge if it was completed in more than one language
+            const value = codeMap.get(id)
+            value ?
+                codeMap.set(id, { solutions: value.solutions.push({code, language})}) :
+                codeMap.set(id, { solutions: [{ code, language }]})
+        })
+        return getCompletedSolutions(page+1, codeMap)
+    } else return codeMap
 }
 
 // Use API to get solutions
 const getCompletedChallenges = async(page = 0, previousData = []) => {
-    const { data: {
-        totalPages, data
-    } } = await axios.get(`${BASE_URL}/api/v1/users/${USERNAME}/code-challenges/completed?page=${page}`)
-    const results = [...previousData, ...data]
-    if (totalPages > (page + 1)) await getCompletedChallenges(page++, results)
-    return results
+    try {
+        const { data: {
+            totalPages, data
+        } } = await axios.get(`${BASE_URL}/api/v1/users/${USERNAME}/code-challenges/completed?page=${page}`)
+        const results = [...previousData, ...data]
+        if (totalPages > (page + 1)) await getCompletedChallenges(page++, results)
+        return results
+    } catch(error) {
+        throw error
+    }
 }
 
 
